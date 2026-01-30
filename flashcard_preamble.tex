@@ -1,0 +1,50 @@
+% flashcard_preamble.tex - Include this in your flashcard .tex files for nice rendering
+% Usage: \input{flashcard_preamble} (after \documentclass and packages)
+
+\usepackage{amsmath,amssymb}
+\usepackage{tcolorbox}
+\usepackage{xcolor}
+
+% Define colors
+\definecolor{qcolor}{RGB}{52, 101, 164}
+\definecolor{acolor}{RGB}{78, 154, 6}
+\definecolor{cardcolor}{RGB}{245, 245, 245}
+
+% Flashcard environment: \begin{flashcard}{card-id}
+\newenvironment{flashcard}[1]{%
+    \begin{tcolorbox}[
+        colback=cardcolor,
+        colframe=gray,
+        title={\small\texttt{#1}},
+        fonttitle=\ttfamily\small,
+        arc=2mm
+    ]
+}{%
+    \end{tcolorbox}
+    \vspace{1em}
+}
+
+% Question command
+\newcommand{\Q}[1]{%
+    \textcolor{qcolor}{\textbf{Q:}} #1%
+    \par\vspace{0.5em}%
+}
+
+% Answer command  
+\newcommand{\A}[1]{%
+    \textcolor{acolor}{\textbf{A:}} #1%
+}
+
+% For multi-line questions/answers
+\newcommand{\Qblock}[1]{%
+    \textcolor{qcolor}{\textbf{Q:}}%
+    \par\vspace{0.3em}%
+    #1%
+    \par\vspace{0.5em}%
+}
+
+\newcommand{\Ablock}[1]{%
+    \textcolor{acolor}{\textbf{A:}}%
+    \par\vspace{0.3em}%
+    #1%
+}
